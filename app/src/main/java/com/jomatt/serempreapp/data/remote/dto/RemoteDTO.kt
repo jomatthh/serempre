@@ -6,3 +6,10 @@ data class PostRemote(
     val title: String?,
     val body: String?,
 )
+
+
+data class UserRemote(
+    val name: String?,
+    val username: String?,
+    val email: String?
+)

@@ -1,0 +1,7 @@
+package com.jomatt.serempreapp
+
+import android.content.Context
+import android.widget.Toast
+
+fun Context.showToast(msg: String?) =
+    Toast.makeText(this, msg ?: "No se pudo procesar la solicitud", Toast.LENGTH_LONG).show()

@@ -5,3 +5,9 @@ data class Post(
     val title: String,
     val description: String
 )
+
+data class User(
+    val name: String,
+    val username: String,
+    val email: String
+)
