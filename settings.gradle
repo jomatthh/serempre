@@ -1,0 +1,2 @@
+rootProject.name = "serempreApp"
+include ':app'
