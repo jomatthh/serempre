@@ -3,6 +3,7 @@ package com.jomatt.serempreapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -41,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         )
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navBottom, navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if(destination.id == R.id.splashFragment){
+                binding.navBottom.visibility = View.GONE
+            }else{
+                binding.navBottom.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
