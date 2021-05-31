@@ -5,4 +5,7 @@
     <string name="post_detail_fragment_add_favorite">Agregar a Favoritos</string>
     <string name="main_activity_all">Todos</string>
     <string name="main_activity_favorites">Favoritos</string>
+    <string name="post_fragment_title">Publicaciones</string>
+    <string name="post_favorite_fragment_title">Favoritos</string>
+    <string name="post_detail_fragment_title">Detalle</string>
 </resources>

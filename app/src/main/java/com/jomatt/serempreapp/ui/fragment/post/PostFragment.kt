@@ -1,6 +1,7 @@
 package com.jomatt.serempreapp.ui.fragment.post
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -85,6 +86,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
     }
 
     override fun onItemClick(item: Post) {
+        Log.d("TAG","Lol")
         val action = PostFragmentDirections.actionPostFragmentToPostDetailFragment(item)
         findNavController().navigate(action)
     }

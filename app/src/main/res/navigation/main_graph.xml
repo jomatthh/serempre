@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/postFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/postFragment"
         android:name="com.jomatt.serempreapp.ui.fragment.post.PostFragment"
-        android:label="fragment_post"
+        android:label="@string/post_fragment_title"
         tools:layout="@layout/fragment_post">
         <action
             android:id="@+id/action_postFragment_to_postDetailFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/postDetailFragment"
         android:name="com.jomatt.serempreapp.ui.fragment.post.PostDetailFragment"
-        android:label="fragment_post_detail"
+        android:label="@string/post_detail_fragment_title"
         tools:layout="@layout/fragment_post_detail" >
         <argument
             android:name="post"
@@ -30,6 +30,19 @@
     <fragment
         android:id="@+id/postFavoriteFragment"
         android:name="com.jomatt.serempreapp.ui.fragment.post.PostFavoriteFragment"
-        android:label="fragment_post_favorite"
+        android:label="@string/post_favorite_fragment_title"
         tools:layout="@layout/fragment_post_favorite" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.jomatt.serempreapp.ui.fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_postFragment"
+            app:destination="@id/postFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+    </fragment>
 </navigation>
