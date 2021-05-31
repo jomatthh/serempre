@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.jomatt.serempreapp.R
 import com.jomatt.serempreapp.core.BaseViewHolder
@@ -56,10 +57,11 @@ class PostAdapter(
             if (position < MAX_BLUE) {
                 binding.root.background =
                     ContextCompat.getDrawable(context, R.color.colorBlue)
-            }else{
+            } else {
                 binding.root.background =
                     ContextCompat.getDrawable(context, R.color.white)
             }
+            binding.imgFavorite.isVisible = item.isFavorite
         }
     }
 }

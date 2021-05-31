@@ -8,7 +8,8 @@ data class Post(
     val id: Int,
     val userId: Int,
     val title: String,
-    val description: String
+    val description: String,
+    var isFavorite: Boolean
 ): Parcelable
 
 data class User(

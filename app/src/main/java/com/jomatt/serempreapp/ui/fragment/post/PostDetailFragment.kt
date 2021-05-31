@@ -39,6 +39,7 @@ class PostDetailFragment :
     }
 
     private fun addToFavorite(){
+        post.isFavorite = true
         viewModel.insertFavorite(post)
     }
 

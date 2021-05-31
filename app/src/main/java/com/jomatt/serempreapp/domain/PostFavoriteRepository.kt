@@ -5,5 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface PostFavoriteRepository {
     suspend fun insertPostFavorite(post: Post)
-    fun fetchPostsLocal(): Flow<List<Post>>
+    suspend fun insertAll(posts: List<Post>)
+    fun fetchFavoritePostsLocal(): Flow<List<Post>>
+    fun fetchAllPostsLocal(): Flow<List<Post>>
 }

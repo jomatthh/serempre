@@ -9,13 +9,23 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/teal_200"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgFavorite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit" />
+
+    <ImageView
+        android:id="@+id/imgFavorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTitle"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle" />
 
     <TextView
         android:id="@+id/tvDescription"

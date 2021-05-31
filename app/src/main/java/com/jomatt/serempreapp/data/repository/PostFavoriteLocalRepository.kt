@@ -16,12 +16,31 @@ class PostFavoriteLocalRepository @Inject constructor(private val dataSource: Po
             post.userId,
             post.title,
             post.description,
+            post.isFavorite
         )
-        dataSource.insert(dbPost)
+        dataSource.insertFavorite(dbPost)
     }
 
-    override  fun fetchPostsLocal(): Flow<List<Post>> {
-        return dataSource.fetchPostsLocal().map {
+    override  fun fetchFavoritePostsLocal(): Flow<List<Post>> {
+        return dataSource.fetchFavoritePostsLocal().map {
+            it.map { db -> db.toPost() }
+        }
+    }
+
+    override suspend fun insertAll(posts: List<Post>) {
+        val items = posts.map {post->
+            DBPost(
+                post.id,
+                post.userId,
+                post.title,
+                post.description,
+            )
+        }
+        dataSource.insertAll(items)
+    }
+
+    override fun fetchAllPostsLocal(): Flow<List<Post>> {
+        return dataSource.fetchAllPostsLocal().map {
             it.map { db -> db.toPost() }
         }
     }

@@ -1,14 +1,10 @@
 package com.jomatt.serempreapp.ui.fragment.post
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jomatt.serempreapp.R
 import com.jomatt.serempreapp.core.BaseFragment
 import com.jomatt.serempreapp.databinding.FragmentPostFavoriteBinding
 import com.jomatt.serempreapp.domain.model.Post
@@ -30,7 +26,7 @@ class PostFavoriteFragment : BaseFragment<FragmentPostFavoriteBinding>(FragmentP
         setupObservers()
     }
     private fun setupObservers(){
-        viewModel.fetchPostLocal.observe(viewLifecycleOwner,{
+        viewModel.fetchFavoritePostLocal.observe(viewLifecycleOwner,{
             adapter.update(it)
         })
     }
@@ -47,6 +43,5 @@ class PostFavoriteFragment : BaseFragment<FragmentPostFavoriteBinding>(FragmentP
 
 
     override fun onItemClick(item: Post) {
-        TODO("Not yet implemented")
     }
 }

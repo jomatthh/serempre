@@ -7,11 +7,19 @@ import javax.inject.Inject
 class PostFavoriteLocalDataSource @Inject constructor(
     private val dataBase: AppDataBase
 ) : PostFavoriteDataSource {
-    override suspend fun insert(post: DBPost) {
-        dataBase.postDAO().insert(post)
+    override suspend fun insertFavorite(post: DBPost) {
+        dataBase.postDAO().insertFavorite(post)
     }
 
-    override fun fetchPostsLocal(): Flow<List<DBPost>> {
-        return dataBase.postDAO().getPostsLocal()
+    override fun fetchFavoritePostsLocal(): Flow<List<DBPost>> {
+        return dataBase.postDAO().getFavoritePostsLocal()
+    }
+
+    override suspend fun insertAll(post: List<DBPost>) {
+        dataBase.postDAO().insertAll(post)
+    }
+
+    override fun fetchAllPostsLocal(): Flow<List<DBPost>> {
+        return dataBase.postDAO().getAllPostLocal()
     }
 }

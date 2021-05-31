@@ -4,6 +4,8 @@ import com.jomatt.serempreapp.data.db.DBPost
 import kotlinx.coroutines.flow.Flow
 
 interface PostFavoriteDataSource {
-    suspend fun insert(post: DBPost)
-    fun fetchPostsLocal(): Flow<List<DBPost>>
+    suspend fun insertFavorite(post: DBPost)
+    suspend fun insertAll(post: List<DBPost>)
+    fun fetchFavoritePostsLocal(): Flow<List<DBPost>>
+    fun fetchAllPostsLocal():  Flow<List<DBPost>>
 }

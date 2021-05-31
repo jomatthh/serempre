@@ -10,9 +10,10 @@ data class DBPost(
     val id: Int,
     val userId: Int,
     val title: String,
-    val description: String
+    val description: String,
+    val isFavorite: Boolean = false
 ) {
     fun toPost(): Post {
-        return Post(this.id, this.userId, this.title, this.description)
+        return Post(this.id, this.userId, this.title, this.description, this.isFavorite)
     }
 }
