@@ -7,17 +7,18 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jomatt.serempreapp.R
 import com.jomatt.serempreapp.core.BaseFragment
 import com.jomatt.serempreapp.databinding.FragmentPostBinding
 import com.jomatt.serempreapp.domain.model.Post
-import com.jomatt.serempreapp.showToast
 import com.jomatt.serempreapp.ui.adapter.PostAdapter
-import com.jomatt.serempreapp.vo.OperationResult
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::inflate),
@@ -25,6 +26,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
 
 
     private val viewModel: PostViewModel by viewModels()
+    private lateinit var posts : List<Post>
 
     private val adapter by lazy {
         PostAdapter(requireContext(), emptyList(), this)
@@ -39,6 +41,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
 
     private fun setupObservers() {
         viewModel.fetchAllPostLocal.observe(viewLifecycleOwner, {
+            posts = it
             adapter.update(it)
         })
     }
@@ -52,6 +55,26 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        val mIth = ItemTouchHelper(
+            object : ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: ViewHolder, target: ViewHolder
+                ): Boolean {
+                    return true // true if moved, false otherwise
+                }
+
+                override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
+                    val position = viewHolder.adapterPosition
+                    val item = posts[position]
+                    adapter.update( posts.filter { it.id!=item.id } )
+                }
+            })
+        mIth.attachToRecyclerView(binding.rvPost)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
