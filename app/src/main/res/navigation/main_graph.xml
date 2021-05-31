@@ -24,7 +24,12 @@
         android:label="fragment_post_detail"
         tools:layout="@layout/fragment_post_detail" >
         <argument
-            android:name="userId"
-            app:argType="integer" />
+            android:name="post"
+            app:argType="com.jomatt.serempreapp.domain.model.Post" />
     </fragment>
+    <fragment
+        android:id="@+id/postFavoriteFragment"
+        android:name="com.jomatt.serempreapp.ui.fragment.post.PostFavoriteFragment"
+        android:label="fragment_post_favorite"
+        tools:layout="@layout/fragment_post_favorite" />
 </navigation>

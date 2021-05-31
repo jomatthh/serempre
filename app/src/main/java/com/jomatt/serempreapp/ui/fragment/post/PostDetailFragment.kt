@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.jomatt.serempreapp.R
 import com.jomatt.serempreapp.core.BaseFragment
 import com.jomatt.serempreapp.databinding.FragmentPostDetailBinding
+import com.jomatt.serempreapp.domain.model.Post
 import com.jomatt.serempreapp.domain.model.User
 import com.jomatt.serempreapp.showToast
 import com.jomatt.serempreapp.vo.OperationResult
@@ -21,21 +22,28 @@ class PostDetailFragment :
 
     private val viewModel: PostViewModel by viewModels()
 
-    private var idUser: Int = 0
+    private lateinit var post: Post
     private val args: PostDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        idUser = args.userId
+        post = args.post
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        binding.btnAddToFavorite.setOnClickListener {
+            addToFavorite()
+        }
+    }
+
+    private fun addToFavorite(){
+        viewModel.insertFavorite(post)
     }
 
     private fun setupObservers() {
-        viewModel.getUserById(idUser).observe(viewLifecycleOwner, { result ->
+        viewModel.getUserById(post.userId).observe(viewLifecycleOwner, { result ->
             when (result) {
                 is OperationResult.Success -> {
                     setData(result.data)

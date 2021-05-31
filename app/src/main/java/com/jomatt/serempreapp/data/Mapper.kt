@@ -7,7 +7,7 @@ import com.jomatt.serempreapp.domain.model.User
 
 object Mapper {
     fun postRemoteToPost(data: PostRemote): Post {
-        return Post(data.userId ?: 0, data.title ?: "", data.body ?: "")
+        return Post(data.id ?: 0, data.userId ?: 0, data.title ?: "", data.body ?: "")
     }
 
     fun userRemoteToUser(data: UserRemote): User {

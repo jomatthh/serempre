@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/postFragment"
+        android:icon="@drawable/ic_post"
+        android:title="@string/main_activity_all" />
+    <item android:id="@+id/postFavoriteFragment"
+        android:icon="@drawable/ic_star"
+        android:title="@string/main_activity_favorites" />
+</menu>

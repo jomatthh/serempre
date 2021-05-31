@@ -1,25 +1,25 @@
 package com.jomatt.serempreapp.ui.fragment.post
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jomatt.serempreapp.R
 import com.jomatt.serempreapp.core.BaseFragment
-import com.jomatt.serempreapp.databinding.FragmentPostBinding
+import com.jomatt.serempreapp.databinding.FragmentPostFavoriteBinding
 import com.jomatt.serempreapp.domain.model.Post
-import com.jomatt.serempreapp.showToast
 import com.jomatt.serempreapp.ui.adapter.PostAdapter
-import com.jomatt.serempreapp.vo.OperationResult
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::inflate),
-    PostAdapter.OnPostListener {
+class PostFavoriteFragment : BaseFragment<FragmentPostFavoriteBinding>(FragmentPostFavoriteBinding::inflate), PostAdapter.OnPostListener  {
 
     private val viewModel: PostViewModel by viewModels()
-
     private val adapter by lazy {
         PostAdapter(requireContext(), emptyList(), this)
     }
@@ -29,20 +29,11 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
         setupAdapter()
         setupObservers()
     }
-
-    private fun setupObservers() {
-        viewModel.fetchPosts.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is OperationResult.Success -> {
-                    adapter.update(result.data)
-                }
-                is OperationResult.Failure -> {
-                    requireContext().showToast(result.exception.message)
-                }
-            }
+    private fun setupObservers(){
+        viewModel.fetchPostLocal.observe(viewLifecycleOwner,{
+            adapter.update(it)
         })
     }
-
     private fun setupAdapter() {
         binding.rvPost.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPost.adapter = adapter
@@ -54,8 +45,8 @@ class PostFragment : BaseFragment<FragmentPostBinding>(FragmentPostBinding::infl
         )
     }
 
+
     override fun onItemClick(item: Post) {
-        val action = PostFragmentDirections.actionPostFragmentToPostDetailFragment(item)
-        findNavController().navigate(action)
+        TODO("Not yet implemented")
     }
 }
